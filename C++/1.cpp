@@ -544,9 +544,95 @@ long double: The size and structure can vary, but it usually follows a similar p
     cout<<cool48<<endl;
     cout<<cool49<<endl;
 
+    // struct 
 
+    cout<<"struct"<<endl;
 
+    struct classroom
+    {
+        int a;
+        int b;
+    };
 
+    classroom a1;
+    a1.a=5;
+    a1.b=10;
+
+    cout<<a1.a<<endl;
+    cout<<a1.b<<endl;
+
+    // struct with pointers
+
+    cout<<"struct with pointers"<<endl;
+
+    struct classroom2
+    {
+        int a;
+        int b;
+    };
+
+    classroom2* a2=new classroom2;
+    a2->a=5;
+    a2->b=10;
+
+    cout<<a2->a<<endl;
+    cout<<a2->b<<endl;
+
+    // struct with arrays
+
+    cout<<"struct with arrays"<<endl;
+
+    struct classroom3
+    {
+        int a[5];
+        int b[5];
+    };
+
+    classroom3 a3;
+    a3.a[0]=5;
+    a3.b[0]=10;
+
+    cout<<a3.a[0]<<endl;
+    cout<<a3.b[0]<<endl;
+    
+    // struct with arrays and pointers
+
+    cout<<"struct with arrays and pointers"<<endl;
+
+    struct classroom4
+    {
+        int* a;
+        int* b;
+    };
+
+    classroom4 a4;
+    a4.a=new int[5];
+    a4.b=new int[5];
+    a4.a[0]=5;
+    a4.b[0]=10;
+
+    cout<<a4.a[0]<<endl;
+    cout<<a4.b[0]<<endl;
+
+    // struct with arrays and pointers and heap memory
+
+    cout<<"struct with arrays and pointers and heap memory"<<endl;
+
+    struct classroom5
+    {
+        int* a;
+        int* b;
+    };
+
+    classroom5* a5=new classroom5;
+    a5->a=new int[5];
+    a5->b=new int[5];
+    a5->a[0]=5;
+    a5->b[0]=10;
+
+    cout<<a5->a[0]<<endl;
+    cout<<a5->b[0]<<endl;
+    
 
     //these are the multiple line comments
     
