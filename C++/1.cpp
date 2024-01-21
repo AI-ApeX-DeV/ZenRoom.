@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 #include<string>
+#include<cstdlib>
+#include<cstring>
 #include<iomanip>
 #include<limits>
 #include<cmath>
@@ -320,7 +322,7 @@ long double: The size and structure can vary, but it usually follows a similar p
     cool7=nullptr; // dont forget to set the pointer to null after deallocating memory from it
 
     // lets learn about exceptions
-    for (int i = 0; i < 100000000; i++) {
+    /*for (int i = 0; i < 100000000; i++) {
         try {
             int* cool8 = new int[i];
             cout << i << endl;
@@ -328,10 +330,10 @@ long double: The size and structure can vary, but it usually follows a similar p
         } catch (bad_alloc& e) {
             cout << "Exception occurred: " << e.what() << endl;
         }
-    }
+    }*/
 
     // using the nothrow 
-
+    /*
     for (int i = 0; i < 100000000; i++) {
         int* cool9 = new (nothrow) int[i];
         if (cool9 == nullptr) {
@@ -341,15 +343,213 @@ long double: The size and structure can vary, but it usually follows a similar p
         cout << i << endl;
         delete[] cool9;  // Don't forget to free the allocated memory
     }
-
+*/
     // note that we can call on a null pointer 
 
+    //arrays in heap memory
+
+    int* cool10=new int[5]; // this will allocate memory to the pointer at runtime
+    cool10[0]=1;
+    cool10[1]=2;
+    cool10[2]=3; 
+
+
+    // references
+    cout<<"references"<<endl;
+    x=3;
+    int& ad = x; // this is a reference
+    cout<<ad<<endl;
+    ad=10;
+    cout<<x<<endl;
+    x=20;
+
+    //References • Don’t use dereferencing for reading and writing • Can’t be changed to reference something else • Must be initialized at declaration
+    //Pointers • Must go through dereference operator to read/write through pointed value • Can be changed to point somewhere else • Can be declared un-initialized (will contain garbage addresses)
+
+    //const in case of references
+
+    const int& cool11=x; // this is a reference to a constant, here we cannot change the value of x using cool11 since it is a reference to a constant
+
+    // simulating reference using pointers
+
+    const int* const cool12=&x; // this is a constant pointer to a constant, here we cannot change the value of x using cool12 since it is a constant pointer to a constant
+
+    // note that here if we change the value of *cool12, then it wont change and lead to a error 
+
+    // using toupper,tolowe,isalphanum etc etc
+    cout<<"using toupper,tolowe,isalphanum etc etc"<<endl;
+    cout<<toupper('a')<<endl;
+    cout<<tolower('A')<<endl;
+    cout<<isalnum('a')<<endl;
+    cout<<isalpha('a')<<endl;
+    cout<<isdigit('a')<<endl;
+    cout<<islower('a')<<endl;
+    cout<<isupper('a')<<endl;
+    cout<<isspace('a')<<endl;
+    cout<<isblank('a')<<endl;
 
 
 
-    /*  
-    these are the multiple line comments
-    */
+    // stirng length
+
+    cout<<"string length"<<endl;
+    string cool13="hello";
+    cout<<cool13.length()<<endl; 
+    cout<<cool13.size()<<endl;
+    cout<<cool13.capacity()<<endl;
+    
+    // string concatenation
+
+    cout<<"string concatenation"<<endl;
+    string cool14="hello";
+    string cool15="world";
+    cout<<cool14+cool15<<endl;
+    cout<<cool14.append(cool15)<<endl;
+    
+    // string comparison
+
+    cout<<"string comparison"<<endl;
+    string cool16="hello";
+    string cool17="world";
+    cout<<cool16.compare(cool17)<<endl;
+    cout<<cool16.compare("hello")<<endl;
+
+    // string substring
+
+    cout<<"string substring"<<endl;
+    string cool18="hello";
+    cout<<cool18.substr(1,3)<<endl;
+
+    // string erase
+
+    cout<<"string erase"<<endl;
+
+    string cool19="hello";
+    cout<<cool19.erase(1,3)<<endl;
+
+    // string insert
+
+    cout<<"string insert"<<endl;
+
+    string cool20="hello";
+    cout<<cool20.insert(1,"world")<<endl; // this will insert the string at the specified position
+
+    // string find
+
+    cout<<"string find"<<endl;
+
+    string cool21="hello";
+    cout<<cool21.find("l")<<endl; // this will find the first occurence of the string and return the index of the first character of the string
+
+    // string replace
+
+    cout<<"string replace"<<endl;
+
+    string cool22="hello";
+    cout<<cool22.replace(1,3,"world")<<endl; // this will replace the string at the specified position
+
+    // string empty
+
+    cout<<"string empty"<<endl;
+
+    string cool23="hello";
+    cout<<cool23.empty()<<endl; // this will return true if the string is empty
+
+    // strcmp
+
+    cout<<"strcmp"<<endl;
+
+    string cool24="hello";
+    string cool25="world";
+    // cout<<strcmp(cool24,cool25)<<endl; // this will compare the two strings and return 0 if they are equal, -1 if the first string is smaller than the second string and 1 if the first string is greater than the second string
+
+    // note that strcmp works only incase of character arrays and not strings
+
+    const char *cool26="hello";
+    const char *cool27="world";
+    cout<<strcmp(cool26,cool27)<<endl; // this will compare the two strings and return 0 if they are equal, -1 if the first string is smaller than the second string and 1 if the first string is greater than the second string
+
+    // strchr
+
+    cout<<"strchr"<<endl;
+
+    const char *cool28="hello";
+    cout<<strchr(cool28,'l')<<endl; // this will return the pointer to the first occurence of the character in the string
+
+    // strncmp
+
+    cout<<"strncmp"<<endl;
+
+    const char *cool29="hello";
+    const char *cool30="world";
+    cout<<strncmp(cool29,cool30,3)<<endl; // this will compare the two strings and return 0 if they are equal, -1 if the first string is smaller than the second string and 1 if the first string is greater than the second string
+
+    
+    // strcat
+
+    cout<<"strcat"<<endl;
+
+    char cool31[10]="hello";
+    char cool32[10]="world";
+    cout<<strcat(cool31,cool32)<<endl; // this will concatenate the two strings
+
+    // strcpy
+
+    cout<<"strcpy"<<endl;
+
+    char cool33[10]="hello";
+    char cool34[10]="world";
+    cout<<strcpy(cool33,cool34)<<endl; // this will copy the second string to the first string
+
+    //strncat
+
+    cout<<"strncat"<<endl;
+
+    char cool35[10]="hello";
+    char cool36[10]="world";
+    cout<<strncat(cool35,cool36,3)<<endl; // this will concatenate the two strings upto the specified number of characters
+
+    // strncpy
+
+    cout<<"strncpy"<<endl;
+
+    char cool37[10]="hello";
+    char cool38[10]="world";
+    cout<<strncpy(cool37,cool38,3)<<endl; // this will copy the second string to the first string upto the specified number of characters
+
+    //string variables and its different types of initializations
+
+    cout<<"string variables and its different types of initializations"<<endl;
+
+    string cool39="hello";
+    string cool40("hello");
+    string cool41{'h','e','l','l','o'};
+    string cool42(5,'h');
+    string cool43(cool39);
+    string cool44(cool39,1,3);
+    string cool45(cool39.begin(),cool39.begin()+3);
+    string cool46(cool39.begin(),cool39.end());
+    string cool47(cool39.rbegin(),cool39.rend());
+    string cool48(cool39.c_str());
+    string cool49(cool39,1);
+    cout<<cool39<<endl;
+    cout<<cool40<<endl;
+    cout<<cool41<<endl;
+    cout<<cool42<<endl;
+    cout<<cool43<<endl;
+    cout<<cool44<<endl;
+    cout<<cool45<<endl;
+    cout<<cool46<<endl;
+    cout<<cool47<<endl;
+    cout<<cool48<<endl;
+    cout<<cool49<<endl;
+
+
+
+
+
+    //these are the multiple line comments
+    
     // this is the entry point of the program
     string name;
     int age;
