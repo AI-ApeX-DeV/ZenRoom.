@@ -247,14 +247,34 @@ long double: The size and structure can vary, but it usually follows a similar p
     cout<<cos(2)<<endl; // will return the cosine of the number
     cout<<tan(2)<<endl; // will return the tangent of the number
 
-    // note that when we perfomr any calculation, it happens on 4 bybes, so if we add two chars 1byte each , the result wull be stored in 4 bytes
 
+    for(size_t i=0;i<10;i++) // size_t occupies 8 bytes 
+    {
+        cout<<i<<endl;
+    }
 
+    // arrays in c++
 
-    // you can use the size_t operator in case of for loops, but these take 8 bytes of memory
-
+    int array[5]={1,2,3,4,5}; // array is a collection of elements of same data type
+    int array2[5]={1,2}; // this will initialize the first two elements of the array and the rest will be initialized to 0
+    int array3[5]={}; // this will initialize all the elements of the array to 0
+    int array4={1,2,3,4,5}; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
     
-
+    // using a range based for loop
+    
+    for(int i:array)
+    {
+        cout<<i<<endl;
+    }
+    // different ways to initialise a character array
+    char name1[]={'A','B','C','D','E','\0'}; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
+    char name2[]="ABCDE"; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
+    char name3[6]="ABCDE"; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
+    char name4[6]={'A','B','C','D','E','\0'}; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
+    char name5[6]={'A','B','C','D','E'}; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
+    char name6[6]={'A','B','C','D','E','F'}; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
+    // note that if we dont use the null terminator then if we print the array , after the array it will print garbage values until it finds a null terminator
+    
     /*  
     these are the multiple line comments
     */
