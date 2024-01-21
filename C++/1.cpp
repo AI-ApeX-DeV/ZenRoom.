@@ -258,7 +258,7 @@ long double: The size and structure can vary, but it usually follows a similar p
     int array[5]={1,2,3,4,5}; // array is a collection of elements of same data type
     int array2[5]={1,2}; // this will initialize the first two elements of the array and the rest will be initialized to 0
     int array3[5]={}; // this will initialize all the elements of the array to 0
-    int array4={1,2,3,4,5}; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
+    int array4[]={1,2,3,4,5}; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
     
     // using a range based for loop
     
@@ -275,6 +275,40 @@ long double: The size and structure can vary, but it usually follows a similar p
     char name6[6]={'A','B','C','D','E','F'}; // this will initialize the array with the number of elements equal to the number of elements in the initializer list
     // note that if we dont use the null terminator then if we print the array , after the array it will print garbage values until it finds a null terminator
     
+    // lets learn about pointers
+    a=5;
+    cout<<"lets learn about pointers"<<endl;
+    int* cool=nullptr; // this is a null pointer
+    cout<<cool<<endl;
+    cout<<&cool<<endl; // this will print the address of the pointer
+    //cout<<*cool<<endl; // this will print the value of the pointer
+    int* cool2=&a; // this is a pointer which points to the address of a
+    cout<<cool2<<endl;
+    cout<<&cool2<<endl; // this will print the address of the pointer
+    cout<<*cool2<<endl; // this will print the value of the pointer
+    const char* cool3="hello"; // this is a pointer which points to the address of the first character of the string
+    cout<<cool3<<endl;
+    cout<<&cool3<<endl; // this will print the address of the pointer
+    cout<<*cool3<<endl; // this will print the value of the pointer
+    cout<<*(cool3+1)<<endl; // this will print the value of the pointer
+    cout<<*(cool3+2)<<endl; // this will print the value of the pointer
+    char cool4[]="hello"; // this is a pointer which points to the address of the first character of the string
+    cout<<cool4<<endl;
+    cout<<&cool4<<endl; // this will print the address of the pointer
+    cout<<*cool4<<endl; // this will print the value of the pointer
+    cout<<*(cool4+1)<<endl; // this will print the value of the pointer
+    //note that we should not use pointer to define a string since it is a constant and we cannot change the value of a constant, we can only change the value if it is stored in a character array
+
+    // avoiding these things in case of pointers
+
+    int* cool5=nullptr; // this is a dangling pointer
+    *cool5=5; // this will lead to crash
+
+    int* cool6;
+    *cool6=45; // this is bad since we are assigning value to a junk address
+
+    
+
     /*  
     these are the multiple line comments
     */
