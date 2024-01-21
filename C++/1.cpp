@@ -302,12 +302,50 @@ long double: The size and structure can vary, but it usually follows a similar p
     // avoiding these things in case of pointers
 
     int* cool5=nullptr; // this is a dangling pointer
-    *cool5=5; // this will lead to crash
+    //*cool5=5; // this will lead to crash
 
     int* cool6;
-    *cool6=45; // this is bad since we are assigning value to a junk address
+    //*cool6=45; // this is bad since we are assigning value to a junk address
 
-    
+    // we can use the new keyword to allocate memory to a pointer at runtime and delete keyword to deallocate memory from a pointer at runtime using the heap memory
+
+    int* cool7=new int; // this will allocate memory to the pointer at runtime
+    *cool7=5;
+    cout<<*cool7<<endl;
+    delete cool7; // this will deallocate memory from the pointer at runtime
+    // note that we should always deallocate memory from the pointer after using it 
+    // if we dont deallocate memory from the pointer then it will lead to memory leak
+    // if we try to access the pointer after deallocating memory from it then it will lead to dangling pointer
+    // dont  use the delete keyword twice on the same pointer since it will lead to undefined behaviour
+    cool7=nullptr; // dont forget to set the pointer to null after deallocating memory from it
+
+    // lets learn about exceptions
+    for (int i = 0; i < 100000000; i++) {
+        try {
+            int* cool8 = new int[i];
+            cout << i << endl;
+            delete[] cool8;  // Don't forget to free the allocated memory
+        } catch (bad_alloc& e) {
+            cout << "Exception occurred: " << e.what() << endl;
+        }
+    }
+
+    // using the nothrow 
+
+    for (int i = 0; i < 100000000; i++) {
+        int* cool9 = new (nothrow) int[i];
+        if (cool9 == nullptr) {
+            cout << "Memory allocation failed!" << endl;
+            break;
+        }
+        cout << i << endl;
+        delete[] cool9;  // Don't forget to free the allocated memory
+    }
+
+    // note that we can call on a null pointer 
+
+
+
 
     /*  
     these are the multiple line comments
