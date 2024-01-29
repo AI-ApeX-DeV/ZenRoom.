@@ -7,6 +7,7 @@ using namespace std;
 #include<limits>
 #include<cmath>
 
+
 int add(int a,int b)
 {
     return a+b;
@@ -55,6 +56,62 @@ T& addressnoconst(T& a,T& b)
     cout<<&a<<endl;
 }
 
+// template specialization
+
+template <>
+const char* maximum<const char*>(const char* a,const char* b)
+{
+    return strcmp(a,b)>0?a:b;
+}
+
+// template constraints
+/*
+template <typename T>
+requires std::integral<T>
+T maximuma(T a,T b)
+{
+    return a>b?a:b;
+}
+*/
+/*
+template <typename T> 
+concept MyIntegral = std::is_integral_v<T>;
+
+template <typename T> 
+concept Multipliable = requires(T a, T b) { a * b; // Just makes sure the syntax is valid };
+
+template <typename T> 
+concept Incrementable = requires (T a) { a+=1; ++a; a++; };
+*/
+/*
+Using custom concepts
+
+
+//Syntax 1 
+template <typename T> 
+requires MyIntegral<T> 
+T add_1(T a, T b)
+{ return a + b; }
+
+//Syntax 2 
+template <MyIntegral T> 
+T add_2(T a ,T b)
+{ return a + b; }
+
+auto add_3(MyIntegral auto a, MyIntegral auto b)
+{ return a + b; }
+
+template <typename T> 
+concept TinyType = requires ( T t)
+{ sizeof(T) <=4; // Simple requirement : Only checks syntax 
+requires sizeof(T) <= 4; // Nested requirement : checks the if the expression is true };
+
+template <typename T>
+concept Addable = requires (T a, T b) { (a + b)->convertible_to<int>  ; };  // compound requirement and this ensures that the result is an interger
+
+
+
+*/
 int main()
 {
     int num1=14;
@@ -788,7 +845,116 @@ long double: The size and structure can vary, but it usually follows a similar p
 
     cout<<aaaaa<<endl;
 
+    //template specialization
 
+    maximum<const char*>("hello","world"); // const char* type deduced
+    /*
+    double aaab=5.5;
+    double aaac=6.5;
+    cout<<maximuma(aaab,aaac)<<endl; // double type deduced
+    // note that this will give an error since we have used the requires integral in the template
+
+    */ 
+
+    // then we learnt about the ifndef define endif
+    // then we learnt about the classes , public, private
+    // then we learnt about the constructors
+    // then we learnt how we can shift the constructor function body and other functions body inside the class to the .cpp file with the help of classname:: 
+
+    /*
+    cylinder* cylinder1=new cylinder(5,10);
+    cout<<cylinder1->getvolume()<<endl;
+    we can also this ugle syntax as well
+    cout<<(*cylinder1).getvolume()<<endl;
+    */
+    
+    /*
+    When are destructors called
+- The destructors are called in weird places that may not be obvious
+   - When an object is passed by value to a function
+   - When a local object is returned from a function (for some compilers).
+- Other obvious cases are:
+   - When a local stack object goes out of scope (dies)
+   - When a heap object is released with delete.
+    */
+   // note that the destructors have no return type and no parameters
+    /*Chained calls using pointers
+
+    Dog * p_dog1 = new Dog("Milou", "Shepherd",3);
+    p_dog1->print_info();
+    std::cout << std::endl;
+    std::cout << "after chained call : " << std::endl;
+
+    //Pointer version
+    p_dog1->set_name("Mario")->set_dog_breed("Wire Fox Terrier")->set_dog_age(5);
+    p_dog1->print_info();
+
+    delete p_dog1;*/
+
+    /*
+    Chained calls using pointers
+
+//Chained calls with pointers :
+Dog* set_name(const std::string& dog_name){
+    //dog_name = dog_name; ?? Error
+    this->dog_name = dog_name;
+    return this;
+}
+
+Dog* set_dog_breed(const std::string& breed){
+    this->dog_breed = breed;
+    return this;// For use in chained calls
+}
+
+Dog* set_dog_age(int age){
+    if(this->dog_age){
+        *(this->dog_age) = age;
+    }
+    return this;
+}
+
+    */
+
+   /*
+   Chained calls using references
+
+Dog * p_dog1 = new Dog("Milou", "Shepherd",3);
+p_dog1->print_info();
+
+std::cout << std::endl;
+std::cout << "after chained call: " << std::endl;
+
+//Reference version
+p_dog1->set_name("Mario").set_dog_breed("Wire Fox Terrier").set_dog_age(5);
+
+p_dog1->print_info();
+
+delete p_dog1;
+
+   */
+
+  /*
+  Chained calls using references
+
+Dog * p_dog1 = new Dog("Milou", "Shepherd",3);
+p_dog1->print_info();
+std::cout << std::endl;
+std::cout << "after chained call :" << std::endl;
+//Reference version
+p_dog1->set_name("Mario").set_dog_breed(" Wire Fox Terrier").set_dog_age(5);
+p_dog1->print_info();
+delete p_dog1; 
+  */
+
+ /*
+ class vs struct
+
+ in class members are private by default
+    in struct members are public by default
+    
+ */
+
+// size of an object is the sum of the size of all the data members/variables of the object
 
 
 
@@ -808,7 +974,7 @@ long double: The size and structure can vary, but it usually follows a similar p
     return 0;
 
 
-// LEARNING : comments /**/ cannot be nested 
+// LEARNING : comments 
 // all the code is converted by the compiler into machine code
 // Errors can be compile time, run time or warnings
 // compile time errors are syntax errors
